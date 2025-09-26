@@ -1,7 +1,7 @@
 import { handleGoogleLogin, loginEmailPassword, createAccount } from './auth-service.js';
 
 // 更新導覽列函式
-function updateNavigation(user) {
+export const updateNavigation = (user) => {
   const profileItem = document.querySelector(".profileitem");
   const loginContainer = document.querySelector(".loginContainer");
 
@@ -35,6 +35,8 @@ function updateNavigation(user) {
 
   // 重新綁定點擊事件
   rebindProfileItemEvent(profileItem, handleProfileClick);
+  //觸發動畫
+  profileItem.classList.add('auth-loaded');
 }
 
 // 全局變量來儲存外部點擊處理函數
@@ -125,7 +127,6 @@ function setupLoginContainerEvents(loginContainer) {
     newLoginBtn.addEventListener("click", async (event) => {
       event.preventDefault();
       event.stopPropagation();
-      console.log("🔍 登入按鈕被點擊");
       await loginEmailPassword();
     });
   }
@@ -140,7 +141,6 @@ function setupLoginContainerEvents(loginContainer) {
     newRegisterBtn.addEventListener("click", async (event) => {
       event.preventDefault();
       event.stopPropagation();
-      console.log("🔍 註冊按鈕被點擊");
       await createAccount();
     });
   }
@@ -155,12 +155,9 @@ function setupLoginContainerEvents(loginContainer) {
     newGoogleLoginBtn.addEventListener("click", async (event) => {
       event.preventDefault();
       event.stopPropagation();
-      console.log("🔍 Google 登入按鈕被點擊");
       await handleGoogleLogin();
     });
   }
 
-  console.log("✅ 登入容器事件監聽器設置完成");
 }
 
-export { updateNavigation };
