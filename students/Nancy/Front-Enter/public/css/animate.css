@@ -75,9 +75,20 @@
         transform: translateY(0);
     }
 }
-.navList .item, .navList img, .logo,.profileitem {
+.navList .item, .navList img, .logo {
     animation: moveItem 1s ease-in-out 2s forwards;
     animation-fill-mode: none;
+}
+/* profileitem 初始隱藏，等待認證完成 */
+.profileitem {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 1s ease-in-out;
+}
+/* 認證完成後顯示的樣式 */
+.profileitem.auth-loaded {
+    opacity: 1;
+    transform: translateY(0);
 }
 a.item:hover {
     color:#1AD8D3;
